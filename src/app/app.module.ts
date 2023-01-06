@@ -10,6 +10,7 @@ import { GeneratorComponent } from './generator/generator.component';
 import { LibraryComponent } from './library/library.component';
 
 
+
 @NgModule({
   declarations: [AppComponent, GeneratorComponent, LibraryComponent,],
   imports: [BrowserModule, AppRoutingModule, FormsModule,ClipboardModule,HighlightModule],

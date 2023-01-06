@@ -56,7 +56,25 @@ h4{
     opacity: 0.8;
 }
 #copy-button:hover {
-    background-color: #63b4ff90;
+    background-color: #0048ff90;
+    color: #fff;
+}
+#save-button{
+    position: absolute;
+    top: 55px;
+    right: 8px;
+    padding: 7px;
+    background-color: #ffffff;
+    border: none;
+    outline: none;
+    color: rgb(0, 0, 0);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.2s ease-in;
+    opacity: 0.8;
+}
+#save-button:hover{
+    background-color: #0048ff90;
     color: #fff;
 }
 .code-wrapper:hover #copy-button {

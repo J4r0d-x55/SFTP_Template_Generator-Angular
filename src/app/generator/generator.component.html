@@ -58,8 +58,8 @@
       <br />
       <div class="code-wrapper">
         <pre>
-        <code id="code">
-          <textarea rows="14" cols="40" #inputTarget>
+        <code id="code" >
+          <textarea rows="14" cols="40" #inputTarget #textarea>
 using Renci.SshNet;
 
 namespace SftpExample
@@ -89,6 +89,9 @@ namespace SftpExample
         </code>
       </pre>
         <button [ngxClipboard]="inputTarget" id="copy-button">Copier</button>
+        <button (click)="saveTextareaContent()" id="save-button">
+          Enregistrer
+        </button>
       </div>
     </div>
   </div>
@@ -101,7 +104,7 @@ namespace SftpExample
       <div class="code-wrapper">
         <pre>
           <code id="code">
-            <textarea rows="14" cols="40" #inputTarget>
+            <textarea rows="14" cols="40" #inputTarget #textarea>
 import paramiko
 
 # Set the host, username, and password for the SFTP server
@@ -124,6 +127,9 @@ client.close()
           </code>
         </pre>
         <button [ngxClipboard]="inputTarget" id="copy-button">Copier</button>
+        <button (click)="saveTextareaContent()" id="save-button">
+          Enregistrer
+        </button>
       </div>
     </div>
   </div>
@@ -136,7 +142,7 @@ client.close()
       <div class="code-wrapper">
         <pre>
           <code id="code">
-            <textarea rows="14" cols="40" #inputTarget>
+            <textarea rows="14" cols="40" #inputTarget #textarea>
 <?php
 $host = "{{ userData.host }}";
 $port = 22;
@@ -156,6 +162,9 @@ if (ssh2_auth_password($connection, $username, $password)) {
           </code>
         </pre>
         <button [ngxClipboard]="inputTarget" id="copy-button">Copier</button>
+        <button (click)="saveTextareaContent()" id="save-button">
+          Enregistrer
+        </button>
       </div>
     </div>
   </div>
@@ -168,7 +177,7 @@ if (ssh2_auth_password($connection, $username, $password)) {
       <div class="code-wrapper">
         <pre>
           <code id="code">
-            <textarea rows="14" cols="40" #inputTarget>
+            <textarea rows="14" cols="40" #inputTarget #textarea>
 import * as ssh2 from 'ssh2';
 
 const host = "{{ userData.host }}";
@@ -195,6 +204,9 @@ client.connect({
           </code>
         </pre>
         <button [ngxClipboard]="inputTarget" id="copy-button">Copier</button>
+        <button (click)="saveTextareaContent()" id="save-button">
+          Enregistrer
+        </button>
       </div>
     </div>
   </div>
@@ -207,7 +219,7 @@ client.connect({
       <div class="code-wrapper">
         <pre>
           <code id="code">
-            <textarea rows="14" cols="40" #inputTarget>
+            <textarea rows="14" cols="40" #inputTarget #textarea>
 const ssh2 = require('ssh2');
 
 const host = "{{ userData.host }}";
@@ -234,6 +246,9 @@ client.connect({
           </code>
         </pre>
         <button [ngxClipboard]="inputTarget" id="copy-button">Copier</button>
+        <button (click)="saveTextareaContent()" id="save-button">
+          Enregistrer
+        </button>
       </div>
     </div>
   </div>
@@ -246,7 +261,7 @@ client.connect({
       <div class="code-wrapper">
         <pre>
           <code id="code">
-            <textarea rows="14" cols="40" #inputTarget>
+            <textarea rows="14" cols="40" #inputTarget #textarea>
 import com.jcraft.jsch.JSch;
 import com.jcraft.jsch.Session;
 
@@ -268,6 +283,9 @@ session.connect();
           </code>
         </pre>
         <button [ngxClipboard]="inputTarget" id="copy-button">Copier</button>
+        <button (click)="saveTextareaContent()" id="save-button">
+          Enregistrer
+        </button>
       </div>
     </div>
   </div>
@@ -280,7 +298,7 @@ session.connect();
       <div class="code-wrapper">
         <pre>
           <code id="code">
-            <textarea rows="14" cols="40" #inputTarget>
+            <textarea rows="14" cols="40" #inputTarget #textarea>
 #include <libssh2.h>
 #include <libssh2_sftp.h>
 #include <iostream>
@@ -349,6 +367,9 @@ int main() {
           </code>
         </pre>
         <button [ngxClipboard]="inputTarget" id="copy-button">Copier</button>
+        <button (click)="saveTextareaContent()" id="save-button">
+          Enregistrer
+        </button>
       </div>
     </div>
   </div>
@@ -361,7 +382,7 @@ int main() {
       <div class="code-wrapper">
         <pre>
           <code id="code">
-            <textarea rows="14" cols="40" #inputTarget>
+            <textarea rows="14" cols="40" #inputTarget #textarea>
 #include <libssh2.h>
 #include <libssh2_sftp.h>
 #include <stdio.h>
@@ -431,6 +452,9 @@ return 0;
           </code>
         </pre>
         <button [ngxClipboard]="inputTarget" id="copy-button">Copier</button>
+        <button (click)="saveTextareaContent()" id="save-button">
+          Enregistrer
+        </button>
       </div>
     </div>
   </div>
@@ -443,7 +467,7 @@ return 0;
       <div class="code-wrapper">
         <pre>
           <code id="code">
-            <textarea rows="14" cols="40" #inputTarget>
+            <textarea rows="14" cols="40" #inputTarget #textarea>
 require 'net/sftp'
 
 host = "{{ userData.host }}"
@@ -458,6 +482,9 @@ end
           </code>
         </pre>
         <button [ngxClipboard]="inputTarget" id="copy-button">Copier</button>
+        <button (click)="saveTextareaContent()" id="save-button">
+          Enregistrer
+        </button>
       </div>
     </div>
   </div>

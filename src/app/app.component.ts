@@ -18,6 +18,5 @@ export class AppComponent {
     this.submitted = true;
     
   } 
-  
 }
 
