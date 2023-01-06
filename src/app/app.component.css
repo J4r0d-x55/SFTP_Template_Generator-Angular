@@ -1,0 +1,22 @@
+*{
+    box-sizing: border-box;
+    font-family: 'Mukta', sans-serif;
+}
+.navbar-brand{
+    color: white;
+}
+.nav-link{
+    color: white;
+    text-transform: uppercase;
+}
+footer {
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #111;
+    height: 100px;
+    width: 100vw;
+    padding-top: 40px;
+    color: #fff;
+    margin-top: 326px;
+}

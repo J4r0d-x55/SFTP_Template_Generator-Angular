@@ -1,0 +1,464 @@
+<h1 class="title">SFTP Template Generator</h1>
+<form
+  class="container-sm mt-5 border shadow"
+  #basicForm="ngForm"
+  (submit)="getData(basicForm.value)"
+>
+  <div class="form-group mb-3">
+    <input
+      class="form-control"
+      type="text"
+      ngModel
+      name="host"
+      placeholder="Entrez l'adresse du serveur SFTP"
+    />
+  </div>
+  <div class="form-group mb-3">
+    <input
+      class="form-control"
+      type="text"
+      ngModel
+      name="user"
+      placeholder="Entrez le nom d'utilisateur"
+    />
+  </div>
+  <div class="form-groupe mb-3">
+    <input
+      class="form-control"
+      type="text"
+      ngModel
+      name="password"
+      placeholder="Entrez le mot de passe"
+    />
+  </div>
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <label for="langage">Selectionner le langage :</label>
+    </div>
+    <select id="langage" [(ngModel)]="selectedLangage" name="langage">
+      <option value="C#">C#</option>
+      <option value="python">Python</option>
+      <option value="php">PHP</option>
+      <option value="typescript">Typescript</option>
+      <option value="javascript">Javascript</option>
+      <option value="java">Java</option>
+      <option value="c++">C++</option>
+      <option value="c">C</option>
+      <option value="ruby">Ruby</option>
+    </select>
+  </div>
+  <button type="submit" class="btn btn-secondary">Générer le code</button>
+</form>
+
+<section class="mt-5 container-sm">
+  <div *ngIf="selectedLangage === 'C#'" class="card-body">
+    <div *ngIf="submitted" class="content-code">
+      <p class="language">C#</p>
+      <br />
+      <br />
+      <div class="code-wrapper">
+        <pre>
+        <code id="code">
+          <textarea rows="14" cols="40" #inputTarget>
+using Renci.SshNet;
+
+namespace SftpExample
+{{ "{" }} 
+    public class SftpClientExample
+  {{ "{" }} 
+      public static void Main(string[] args)
+    {{ "{" }} 
+        // Set up the connection information
+        string host = "{{ userData.host }}";
+        string username = "{{ userData.user }}";
+        string password = "{{ userData.password }}";
+        int port = 22;
+            
+        // Connect to the SFTP server
+        using (SftpClient client = new SftpClient(host, port, username, password))
+      {{ "{" }} 
+          client.Connect();
+            
+          // Disconnect from the server
+          client.Disconnect();
+      {{ "}" }}
+    {{ "}" }}
+  {{ "}" }}
+{{ "}" }}
+          </textarea>
+        </code>
+      </pre>
+        <button [ngxClipboard]="inputTarget" id="copy-button">Copier</button>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="selectedLangage === 'python'" class="card-body">
+    <div *ngIf="submitted" class="content-code">
+      <p class="language">Python</p>
+      <br />
+      <br />
+      <div class="code-wrapper">
+        <pre>
+          <code id="code">
+            <textarea rows="14" cols="40" #inputTarget>
+import paramiko
+
+# Set the host, username, and password for the SFTP server
+host = "{{ userData.host }}"
+username = "{{ userData.user }}"
+password = "{{ userData.password }}"
+  
+# Connect to the SFTP server
+client = paramiko.SSHClient()
+client.load_system_host_keys()
+client.connect(host, username=username, password=password)
+  
+# Use the SFTP client
+sftp = client.open_sftp()
+
+# Close the SFTP client and SSH connection
+sftp.close()
+client.close()
+            </textarea>
+          </code>
+        </pre>
+        <button [ngxClipboard]="inputTarget" id="copy-button">Copier</button>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="selectedLangage === 'php'" class="card-body">
+    <div *ngIf="submitted" class="content-code">
+      <p class="language">PHP</p>
+      <br />
+      <br />
+      <div class="code-wrapper">
+        <pre>
+          <code id="code">
+            <textarea rows="14" cols="40" #inputTarget>
+<?php
+$host = "{{ userData.host }}";
+$port = 22;
+$username = "{{ userData.user }}";
+$password =  "{{ userData.password }}";
+
+$connection = ssh2_connect($host, $port);
+
+if (ssh2_auth_password($connection, $username, $password)) {
+    // authenticated
+    echo "$host . connecté "
+} else {
+    // authentication failed
+    echo "Erreur de connection"
+}
+            </textarea>
+          </code>
+        </pre>
+        <button [ngxClipboard]="inputTarget" id="copy-button">Copier</button>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="selectedLangage === 'typescript'" class="card-body">
+    <div *ngIf="submitted" class="content-code">
+      <p class="language">Typescript</p>
+      <br />
+      <br />
+      <div class="code-wrapper">
+        <pre>
+          <code id="code">
+            <textarea rows="14" cols="40" #inputTarget>
+import * as ssh2 from 'ssh2';
+
+const host = "{{ userData.host }}";
+const port = 22;
+const username = "{{ userData.user }}";
+const password = "{{ userData.password }}";
+
+const client = new ssh2.Client();
+client.on('ready', function() {
+  console.log('Client connecté');
+});
+
+client.on('error', function(err) {
+  console.log('Erreur de connection: ' + err);
+});
+
+client.connect({
+  host: host,
+  port: port,
+  username: username,
+  password: password
+});
+            </textarea>
+          </code>
+        </pre>
+        <button [ngxClipboard]="inputTarget" id="copy-button">Copier</button>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="selectedLangage === 'javascript'" class="card-body">
+    <div *ngIf="submitted" class="content-code">
+      <p class="language">Javascript</p>
+      <br />
+      <br />
+      <div class="code-wrapper">
+        <pre>
+          <code id="code">
+            <textarea rows="14" cols="40" #inputTarget>
+const ssh2 = require('ssh2');
+
+const host = "{{ userData.host }}";
+const port = 22;
+const username = "{{ userData.user }}";
+const password = "{{ userData.password }}";
+
+const client = new ssh2.Client();
+client.on('ready', function() {
+  console.log('Client connected');
+});
+
+client.on('error', function(err) {
+  console.log('Connection failed: ' + err);
+});
+
+client.connect({
+  host: host,
+  port: port,
+  username: username,
+  password: password
+});
+            </textarea>
+          </code>
+        </pre>
+        <button [ngxClipboard]="inputTarget" id="copy-button">Copier</button>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="selectedLangage === 'java'" class="card-body">
+    <div *ngIf="submitted" class="content-code">
+      <p class="language">Java</p>
+      <br />
+      <br />
+      <div class="code-wrapper">
+        <pre>
+          <code id="code">
+            <textarea rows="14" cols="40" #inputTarget>
+import com.jcraft.jsch.JSch;
+import com.jcraft.jsch.Session;
+
+String host = "{{ userData.host }}";
+int port = 22;
+String username = "{{ userData.user }}";
+String password = "{{ userData.password }}";
+
+JSch jsch = new JSch();
+Session session = jsch.getSession(username, host, port);
+session.setPassword(password);
+
+Properties config = new Properties();
+config.put("StrictHostKeyChecking", "no");
+session.setConfig(config);
+
+session.connect();
+            </textarea>
+          </code>
+        </pre>
+        <button [ngxClipboard]="inputTarget" id="copy-button">Copier</button>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="selectedLangage === 'c++'" class="card-body">
+    <div *ngIf="submitted" class="content-code">
+      <p class="language">C++</p>
+      <br />
+      <br />
+      <div class="code-wrapper">
+        <pre>
+          <code id="code">
+            <textarea rows="14" cols="40" #inputTarget>
+#include <libssh2.h>
+#include <libssh2_sftp.h>
+#include <iostream>
+#include <fstream>
+                
+int main() {
+  const char *hostname = "{{ userData.host }}";
+  const char *username =  "{{ userData.user }}";
+  const char *password = "{{ userData.password }}";
+  unsigned int port = 22;
+                
+  // initialize libssh2
+  if (libssh2_init(0)) {
+    std::cerr << "Erreur initialisation de libssh2" << std::endl;
+    return 1;
+  }
+                
+  // create a socket
+  int sock = socket(AF_INET, SOCK_STREAM, 0);
+  if (sock < 0) {
+    std::cerr << "Erreur à la création de la socket" << std::endl;
+    return 1;
+  }
+                
+  // connect to the server
+  sockaddr_in sin;
+  sin.sin_family = AF_INET;
+  sin.sin_port = htons(port);
+  sin.sin_addr.s_addr = inet_addr(hostname);
+
+  if (connect(sock, (sockaddr *)(&sin), sizeof(sockaddr_in)) != 0) {
+    std::cerr << "Erreur de connection au serveur" << std::endl;
+    return 1;
+  }
+                
+  // create a libssh2 session
+  LIBSSH2_SESSION *session = libssh2_session_init();
+  if (!session) {
+    std::cerr << "Erreur initialisation de session" << std::endl;
+    return 1;
+  }
+                
+  // set up the session
+  if (libssh2_session_handshake(session, sock)) {
+    std::cerr << "Erreur pour établir la session" << std::endl;
+    return 1;
+  }
+                
+  // authenticate with a password
+  if (libssh2_userauth_password(session, username, password)) {
+    std::cerr << "Erreur d'authentification" << std::endl;
+    return 1;
+  }
+                
+  // authenticated
+  std::cout << "Authentification réussie" << std::endl;
+                
+  // cleanup
+  libssh2_session_free(session);
+  close(sock);
+  libssh2_exit();
+                
+  return 0;
+}
+            </textarea>
+          </code>
+        </pre>
+        <button [ngxClipboard]="inputTarget" id="copy-button">Copier</button>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="selectedLangage === 'c'" class="card-body">
+    <div *ngIf="submitted" class="content-code">
+      <p class="language">C</p>
+      <br />
+      <br />
+      <div class="code-wrapper">
+        <pre>
+          <code id="code">
+            <textarea rows="14" cols="40" #inputTarget>
+#include <libssh2.h>
+#include <libssh2_sftp.h>
+#include <stdio.h>
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <unistd.h>
+                
+int main() {
+  const char *hostname = "{{ userData.host }}";
+  const char *username = "{{ userData.user }}";
+  const char *password = "{{ userData.password }}";
+  unsigned int port = 22;
+                
+// initialize libssh2
+if (libssh2_init(0)) {
+  fprintf(stderr, "Erreur initialisation de libssh2\n");
+  return 1;
+}
+                
+// create a socket
+int sock = socket(AF_INET, SOCK_STREAM, 0);
+if (sock < 0) {
+  fprintf(stderr, "Erreur à la création de la socket\n");
+  return 1;
+}
+                
+// connect to the server
+sockaddr_in sin;
+sin.sin_family = AF_INET;
+sin.sin_port = htons(port);
+sin.sin_addr.s_addr = inet_addr(hostname);
+if (connect(sock, (sockaddr *)(&sin), sizeof(sockaddr_in)) != 0) {
+  fprintf(stderr, "Erreur de connection au serveur\n");
+  return 1;
+}
+                
+// create a libssh2 session
+LIBSSH2_SESSION *session = libssh2_session_init();
+if (!session) {
+  fprintf(stderr, "Erreur initialisation de libssh2 session\n");
+  return 1;
+}
+                
+// set up the session
+if (libssh2_session_handshake(session, sock)) {
+  fprintf(stderr, "Erreur pour établir la session\n");
+  return 1;
+}
+                
+// authenticate with a password
+if (libssh2_userauth_password(session, username, password)) {
+  fprintf(stderr, "Erreur d'authentification\n");
+  return 1;
+}
+                
+// authenticated
+printf("Authentification réussie\n");
+                
+// cleanup
+libssh2_session_free(session);
+close(sock);
+libssh2_exit();
+                
+return 0;
+}
+            </textarea>
+          </code>
+        </pre>
+        <button [ngxClipboard]="inputTarget" id="copy-button">Copier</button>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="selectedLangage === 'ruby'" class="card-body">
+    <div *ngIf="submitted" class="content-code">
+      <p class="language">Ruby</p>
+      <br />
+      <br />
+      <div class="code-wrapper">
+        <pre>
+          <code id="code">
+            <textarea rows="14" cols="40" #inputTarget>
+require 'net/sftp'
+
+host = "{{ userData.host }}"
+port = 22
+username = "{{ userData.user }}"
+password = "{{ userData.password }}"
+
+Net::SFTP.start(host, username, password: password, port: port) do |sftp|
+  puts "Connected to #{host} as #{username}"
+end
+            </textarea>
+          </code>
+        </pre>
+        <button [ngxClipboard]="inputTarget" id="copy-button">Copier</button>
+      </div>
+    </div>
+  </div>
+</section>
