@@ -10,10 +10,10 @@ import * as FileSaver from 'file-saver';
 })
 export class GeneratorComponent implements AfterViewInit {
 
+  //Interpollation des input du formulaire dans le template
   submitted = false;
   userData:any={};
   selectedLangage: string | undefined;
-  // textarea: any;
   getData(data:NgForm)
   {
     console.warn(data);
@@ -21,10 +21,8 @@ export class GeneratorComponent implements AfterViewInit {
     this.submitted = true;
     
   } 
-
-  constructor() {     
-  }
   
+  //Enregistrer le template généré
   @ViewChild('textarea')
   textarea!: ElementRef<any>;
   ngAfterViewInit() {
@@ -35,5 +33,5 @@ export class GeneratorComponent implements AfterViewInit {
     const file = new Blob([textareaContent], { type: 'text/plain' });
     FileSaver.saveAs(file, 'template.txt');
   }
-  
+
 }

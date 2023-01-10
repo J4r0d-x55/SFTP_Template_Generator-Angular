@@ -1,0 +1,17 @@
+<h4 class="ping-title">PING</h4>
+<div>
+  <div class="input-group mb-3">
+    <input
+      type="text"
+      class="form-control"
+      placeholder="Entrez une adresse"
+      aria-label="Recipient's username"
+      aria-describedby="button-addon2"
+      [(ngModel)]="inputValue"
+    />
+    <button class="btn btn-secondary" (click)="sendPing()" id="ping-button">
+      Ping
+    </button>
+  </div>
+  <p class="form-control" *ngIf="pingResponse">{{ pingResponse }}</p>
+</div>
